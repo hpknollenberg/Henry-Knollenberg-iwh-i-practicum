@@ -26,7 +26,7 @@ app.get('/update-cobj', (req, res) => {
 
 // * Code for Route 3 goes here
 app.post('/update-cobj', async (req, res) => {
-    const update = {
+    const add = {
         properties: {
             "name": req.body.name,
             "color": req.body.color,
@@ -34,7 +34,6 @@ app.post('/update-cobj', async (req, res) => {
         }
     }
 
-    const name = req.query.name;
     const addPet = `https://api.hubapi.com/crm/v3/objects/pets`;
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
@@ -42,7 +41,7 @@ app.post('/update-cobj', async (req, res) => {
     };
 
     try { 
-        await axios.post(addPet, properties, { headers } );
+        await axios.post(addPet, add, { headers } );
         res.redirect('/');
     } catch(err) {
         console.error(err);
