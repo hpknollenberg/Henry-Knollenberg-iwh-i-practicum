@@ -5,11 +5,12 @@ html(lang="en")
         link(rel="stylesheet", href="/css/style.css")
     body
         .form-wrapper
-            p Pet: #{name}
-            p Color: #{color}
-            P Legs: #{legs}
             form(method="POST")
-                label(for="newVal") New Amount of Legs
-                input(type="number" name="newVal" required)
+                label(for="name") New Pet Name:
+                input(type="text" name="name" required)
+                label(for="color") New Pet Color:
+                input(type="text" name="color" required)
+                label(for="legs") New Pet Legs:
+                input(type="number" name="legs" required)
                 input(type="submit" value="Submit")
             a(href='/') Return to the homepage
