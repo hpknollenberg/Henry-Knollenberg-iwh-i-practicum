@@ -29,7 +29,28 @@ app.get('/update-cobj', async (req, res) => {
 // * Code for Route 1 goes here
 
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
+app.post('/update-cobj', async (req, res) => {
+    const update = {
+        properties: {
+            "legs": req.body.newVal
+        }
+    }
 
+    const name = req.query.name;
+    const updatePet = `https://api.hubapi.com/crm/v3/objects/pets/${name}?idProperty=name`;
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try { 
+        await axios.patch(updatePet, update, { headers } );
+        res.redirect('/');
+    } catch(err) {
+        console.error(err);
+    }
+
+})
 // * Code for Route 2 goes here
 
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
